@@ -170,7 +170,7 @@ function noResults() {
 function filters(e) {
     const item = document.querySelectorAll('.item');
 
-    type = e.currentTarget.dataset.type;
+    type = e.currentTarget.dataset.filter;
 
     item.forEach(function (el) {
         el.style.display = "none";
