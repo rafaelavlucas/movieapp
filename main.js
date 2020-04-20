@@ -171,14 +171,9 @@ function filters(e) {
     const item = document.querySelectorAll('.item');
 
 
-    const selectedFilter = [...document.querySelectorAll('.filters__item')].find(el => el.classList.contains('selected'));
-
-
-
     item.forEach(function (el) {
         el.style.display = "none";
     })
-
 
     tagFilter.forEach(function (el) {
         el.classList.remove("selected");
@@ -200,6 +195,7 @@ function filters(e) {
     }
 
     type = selectedFilter.dataset.filter;
+    const selectedFilter = [...document.querySelectorAll('.filters__item')].find(el => el.classList.contains('selected'));
 
 }
 
