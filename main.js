@@ -41,7 +41,7 @@ function movies() {
     let text = input.value;
     let type = "";
 
-    var request = new Request(`http://www.omdbapi.com/?apikey=e62e1d19&s=${text}&type=${type}&page=${load}`, {
+    var request = new Request(`https://www.omdbapi.com/?apikey=e62e1d19&s=${text}&type=${type}&page=${load}`, {
         method: 'GET',
     });
 
@@ -132,8 +132,6 @@ function searchMovies() {
             formError.classList.remove("showError");
         }
     }
-
-    getSearchWords();
 }
 
 // Clean Input Search
