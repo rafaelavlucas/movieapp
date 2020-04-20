@@ -194,8 +194,9 @@ function filters(e) {
         loadMore.style.display = "none";
     }
 
-    type = selectedFilter.dataset.filter;
+
     const selectedFilter = [...document.querySelectorAll('.filters__item')].find(el => el.classList.contains('selected'));
+    type = selectedFilter.dataset.filter;
 
 }
 
