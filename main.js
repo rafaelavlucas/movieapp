@@ -15,6 +15,7 @@ const btnSearch = document.querySelector('.search__btn'),
     tagFilterAll = document.querySelector(".filters__item.all");
 
 let load = 1;
+let type = "";
 
 
 // Events
@@ -39,7 +40,6 @@ input.addEventListener("keyup", function (event) {
 function movies() {
 
     let text = input.value;
-    let type = "";
 
     var request = new Request(`https://www.omdbapi.com/?apikey=e62e1d19&s=${text}&type=${type}&page=${load}`, {
         method: 'GET',
@@ -57,7 +57,7 @@ function movies() {
 
             item.forEach(el => {
                 let title = el.Title,
-                    poster = el.Poster,
+                    poster = el.Poster ? el.Poster : "https://rafaelalucas91.github.io/assets/images/img-1.jpeg",
                     year = el.Year,
                     link = el.imdbID,
                     type = el.Type;
@@ -80,15 +80,6 @@ function movies() {
                     movies.insertAdjacentHTML("beforeend", template);
 
                 }, 400);
-
-                function noImg() {
-
-                    if (el.Poster = "") {
-                        el.Poster = "https://rafaelalucas91.github.io/assets/images/img-1.jpeg"
-                    }
-                }
-
-                noImg();
 
             });
 
