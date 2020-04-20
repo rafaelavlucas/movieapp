@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Movie App</title>
+
+
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+
+
+</head>
+
+<body>
+
+    <div class="wrapper" data-theme="">
+
+        <header class="header">
+            <a class="header__content" href="index.html">Home</a>
+            <div class="header__changeTheme">
+                <p class="header__toggleText">dark mode</p>
+                <div class="header__toggle"><span></span></div>
+            </div>
+        </header>
+
+
+        <div id="app">
+
+            <div class="search">
+
+                <div class="search__form">
+                    <div class="search__field"><input class="search__input" type="text" name="" id=""
+                            placeholder="Search...">
+                        <div class="search__close">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <g data-name="close">
+                                    <path
+                                        d="M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z" />
+                                </g>
+
+                            </svg>
+                        </div>
+                    </div>
+
+                    <button class="search__btn btn">Go</button>
+                    <p class="search__error">Please write something!</p>
+                </div>
+
+            </div>
+            <p class="searchWords"></p>
+
+            <div class="filters">
+                <p class="filters__item all">all</p>
+                <p class="filters__item" data-filter="movie">movie</p>
+                <p class="filters__item" data-filter="series">series</p>
+                <p class="filters__item" data-filter="games">game</p>
+            </div>
+
+            <div class="movies"></div>
+
+            <p class="noResults">No results. Please try again!</p>
+
+            <button class="btn loadMore">load more</button>
+        </div>
+
+        <footer class="footer">teste</footer>
+
+    </div>
+
+
+    <script src="main.js"></script>
+</body>
+
+</html>
