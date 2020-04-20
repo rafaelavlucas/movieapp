@@ -170,7 +170,10 @@ function noResults() {
 function filters(e) {
     const item = document.querySelectorAll('.item');
 
-    type = e.currentTarget.dataset.filter;
+
+    const selectedFilter = [...document.querySelectorAll('.filters__item')].find(el => el.classList.contains('selected'));
+
+
 
     item.forEach(function (el) {
         el.style.display = "none";
@@ -195,6 +198,8 @@ function filters(e) {
         resultsError.style.display = "flex";
         loadMore.style.display = "none";
     }
+
+    type = selectedFilter.dataset.filter;
 
 }
 
