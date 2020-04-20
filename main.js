@@ -146,7 +146,6 @@ function cleanSearch() {
 function loadMovies() {
     noResults();
     movies();
-    filters();
 }
 
 // No Results Message
@@ -169,6 +168,10 @@ function noResults() {
 // Filter Categories
 function filters(e) {
     const item = document.querySelectorAll('.item');
+
+
+    const selectedFilter = [...document.querySelectorAll('.filters__item')].find(el => el.classList.contains('selected'));
+    type = e.currentTarget.dataset.filter;
 
 
     item.forEach(function (el) {
@@ -195,8 +198,7 @@ function filters(e) {
     }
 
 
-    const selectedFilter = [...document.querySelectorAll('.filters__item')].find(el => el.classList.contains('selected'));
-    type = selectedFilter.dataset.filter;
+
 
 }
 
