@@ -64,7 +64,7 @@ function movies() {
 
             item.forEach(el => {
                 let title = el.Title,
-                    poster = el.Poster != "N/A" ? el.Poster : "https://rafaelalucas91.github.io/assets/images/img-1.jpeg",
+                    poster = el.Poster != "N/A" ? el.Poster : "../assets/defaultimg.svg",
                     year = el.Year,
                     link = el.imdbID,
                     type = el.Type;
