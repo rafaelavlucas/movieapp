@@ -475,7 +475,9 @@ body {
         }
 
         label {
-            display: none;
+            //visibility: hidden;
+            position: absolute;
+            opacity: 0;
         }
     }
 
@@ -878,6 +880,12 @@ body {
         cursor: pointer;
         position: relative;
         @include transition();
+
+        p {
+            position: absolute;
+            opacity: 0;
+            user-select: none;
+        }
 
         &:last-child {
             margin-right: 0;

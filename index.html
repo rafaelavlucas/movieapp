@@ -41,10 +41,11 @@
             <div class="search">
 
                 <div class="search__form">
-                    <div class="search__field">
-                        <label for="search">Search for a movie</label>
+                    <form class="search__field">
+
+                        <label for="search">Search</label>
                         <input class="search__input" type="text" name="search" id="search" placeholder="Search...">
-                        <div class="search__close">
+                        <span class="search__close">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <g data-name="close">
                                     <path
@@ -52,13 +53,12 @@
                                 </g>
 
                             </svg>
-                        </div>
-                    </div>
+                        </span>
+                    </form>
 
                     <button class="search__btn btn">Go</button>
                     <p class="search__error">Please write something!</p>
                 </div>
-
             </div>
             <div class="options">
                 <p class="searchWords"></p>
@@ -84,11 +84,17 @@
             <div class="footer__icons">
 
                 <a href="https://www.linkedin.com/in/rafaelalucas" rel="noopener" target="_blank"
-                    class="footer__icon linkedin"><span></span></a>
+                    class="footer__icon linkedin"><span></span>
+                    <p>Linkedin</p>
+                </a>
                 <a href="https://dribbble.com/rafaelalucas" rel="noopener" target="_blank"
-                    class="footer__icon dribbble"><span></span></a>
+                    class="footer__icon dribbble"><span></span>
+                    <p>Dribbble</p>
+                </a>
                 <a href="https://codepen.io/rafaelavlucas" rel="noopener" target="_blank"
-                    class="footer__icon codepen"><span></span></a>
+                    class="footer__icon codepen"><span></span>
+                    <p>Codepen</p>
+                </a>
             </div>
         </footer>
 

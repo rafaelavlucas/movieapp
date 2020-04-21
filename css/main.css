@@ -495,7 +495,8 @@ body {
 }
 
 .search__field label {
-  display: none;
+  position: absolute;
+  opacity: 0;
 }
 
 .search__close {
@@ -1026,6 +1027,15 @@ body {
   position: relative;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
+}
+
+.footer__icon p {
+  position: absolute;
+  opacity: 0;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .footer__icon:last-child {

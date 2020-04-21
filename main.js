@@ -29,7 +29,7 @@ tagFilter.forEach(function (el) {
     el.addEventListener("click", filters);
 })
 tagFilterAll.addEventListener('click', showAll);
-input.addEventListener("keyup", function (event) {
+input.addEventListener("keypress", function (event) {
 
     if (event.keyCode === 13) {
         event.preventDefault();
