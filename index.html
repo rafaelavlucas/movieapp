@@ -18,7 +18,7 @@
     <div class="wrapper" data-theme="">
 
         <header class="header">
-            <a class="header__content" href="index.html">Home</a>
+            <a class="header__logo" href="index.html"></a>
             <div class="header__changeTheme">
                 <p class="header__toggleText">dark mode</p>
                 <div class="header__toggle"><span></span></div>
@@ -49,23 +49,33 @@
                 </div>
 
             </div>
-            <p class="searchWords"></p>
+            <div class="options">
+                <p class="searchWords"></p>
 
-            <div class="filters">
-                <p class="filters__item all">all</p>
-                <p class="filters__item" data-filter="movie">movie</p>
-                <p class="filters__item" data-filter="series">series</p>
-                <p class="filters__item" data-filter="games">game</p>
+                <div class="filters">
+                    <p class="filters__item all selected">all</p>
+                    <p class="filters__item" data-filter="movie">movie</p>
+                    <p class="filters__item" data-filter="series">series</p>
+                    <p class="filters__item" data-filter="games">game</p>
+                </div>
             </div>
 
             <div class="movies"></div>
 
-            <p class="noResults">No results. Please try again!</p>
+            <p class="noResults">Sorry, we have no results.</p>
 
             <button class="btn loadMore">load more</button>
         </div>
 
-        <footer class="footer">teste</footer>
+        <footer class="footer">
+            <p class="footer__text">A project made by <a href="" class="link">Rafaela Lucas</a></p>
+            <div class="footer__icons">
+
+                <a href="" class="footer__icon linkedin"><span></span></a>
+                <a href="" class="footer__icon dribbble"><span></span></a>
+                <a href="" class="footer__icon codepen"><span></span></a>
+            </div>
+        </footer>
 
     </div>
 

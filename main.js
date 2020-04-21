@@ -10,6 +10,7 @@ const btnSearch = document.querySelector('.search__btn'),
     header = document.querySelector('.header'),
     wrapper = document.querySelector(".wrapper"),
     toggle = document.querySelector(".header__toggle"),
+    options = document.querySelector('.options'),
     searchWords = document.querySelector('.searchWords'),
     tagFilter = document.querySelectorAll(".filters__item"),
     tagFilterAll = document.querySelector(".filters__item.all");
@@ -57,7 +58,7 @@ function movies() {
 
             item.forEach(el => {
                 let title = el.Title,
-                    poster = el.Poster ? el.Poster : "https://rafaelalucas91.github.io/assets/images/img-1.jpeg",
+                    poster = el.Poster != "N/A" ? el.Poster : "https://rafaelalucas91.github.io/assets/images/img-1.jpeg",
                     year = el.Year,
                     link = el.imdbID,
                     type = el.Type;
@@ -86,6 +87,7 @@ function movies() {
             setTimeout(() => {
                 if (result.totalResults <= 10) {
                     loadMore.style.display = "none";
+
                 } else {
                     loadMore.style.display = "block";
                 }
@@ -96,7 +98,7 @@ function movies() {
             const totalResults = `We found ${result.totalResults} results for <strong>${input.value}</strong>`;
 
             searchWords.innerHTML = totalResults;
-            searchWords.style.display = "flex";
+            options.style.display = "flex";
 
             console.log(result)
         })
@@ -106,16 +108,21 @@ function searchMovies() {
     resultsError.style.display = "none";
 
     if (input.value != "") {
-        moviesContainer.innerHTML = "";
         movies();
-        search.classList.add('clicked');
         noResults();
+
+        moviesContainer.innerHTML = "";
+        search.classList.add('clicked');
+        wrapper.classList.add('enter');
         closeSearch.style.display = "block";
+
     } else {
+        input.addEventListener("click", cleanError);
         input.classList.add("inputError");
         formError.classList.add("showError");
-        input.addEventListener("click", cleanError);
         searchWords.innerHTML = searchResult;
+
+
 
         // Input Empty Error Message
         function cleanError() {
@@ -135,21 +142,21 @@ function cleanSearch() {
 
 // Load More
 function loadMovies() {
-    noResults();
     movies();
+    noResults();
 }
 
 // No Results Message
 function noResults() {
+
     setTimeout(() => {
         if (moviesContainer.innerHTML == "") {
             resultsError.style.display = "flex";
-            searchWords.style.display = "none";
+            options.style.display = "none";
 
         } else {
             resultsError.style.display = "none";
-            searchWords.style.display = "flex";
-
+            options.style.display = "flex";
         }
     }, 700);
 
@@ -159,9 +166,6 @@ function noResults() {
 // Filter Categories
 function filters(e) {
     const item = document.querySelectorAll('.item');
-
-
-    const selectedFilter = [...document.querySelectorAll('.filters__item')].find(el => el.classList.contains('selected'));
     type = e.currentTarget.dataset.filter;
 
 
@@ -232,5 +236,8 @@ window.onscroll = function () {
 // Get Wrapper with 100vh on mobile
 if (window.innerWidth <= 800) {
     wrapper.style.height =
-        window.innerHeight + "px";
+        (window.innerHeight - 120) + "px";
+    document.getElementById("app").style.height =
+        (window.innerHeight - 120) + "px";
+
 };
