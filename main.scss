@@ -592,7 +592,7 @@ body {
     flex-direction: column;
 
     @include m {
-        min-height: 100%;
+        min-height: auto;
         padding: 40px 24px;
     }
 

@@ -19,6 +19,7 @@ let load = 1;
 let type = "";
 
 
+
 // Events
 btnSearch.addEventListener('click', searchMovies);
 loadMore.addEventListener('click', loadMovies);
@@ -36,9 +37,13 @@ input.addEventListener("keyup", function (event) {
     }
 });
 
+// Get Wrapper with 100vh on mobile
+if (window.innerWidth <= 800) {
+    wrapper.style.minHeight = (window.innerHeight - 120) + "px";
+    document.getElementById("app").style.minHeight = (window.innerHeight - 120) + "px";
 
+};
 
-// Main Function to get the Movies
 function movies() {
 
     let text = input.value;
@@ -233,12 +238,3 @@ window.onscroll = function () {
         search.classList.remove("fixed");
     };
 }
-
-// Get Wrapper with 100vh on mobile
-if (window.innerWidth <= 800) {
-    wrapper.style.height =
-        (window.innerHeight - 120) + "px";
-    document.getElementById("app").style.height =
-        (window.innerHeight - 120) + "px";
-
-};
