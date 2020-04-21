@@ -494,6 +494,10 @@ body {
   }
 }
 
+.search__field label {
+  display: none;
+}
+
 .search__close {
   position: absolute;
   right: 8px;

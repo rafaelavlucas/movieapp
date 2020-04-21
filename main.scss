@@ -473,6 +473,10 @@ body {
         @include s {
             margin-right: 16px;
         }
+
+        label {
+            display: none;
+        }
     }
 
     &__close {
