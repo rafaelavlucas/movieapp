@@ -820,6 +820,7 @@ body {
     @include m {
         height: 120px;
         flex-direction: column;
+
     }
 
     &__text {

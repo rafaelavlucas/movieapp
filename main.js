@@ -37,6 +37,7 @@ input.addEventListener("keyup", function (event) {
 });
 
 
+
 // Main Function to get the Movies
 function movies() {
 
