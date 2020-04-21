@@ -291,6 +291,11 @@ body {
         background-position: top;
         background-image: var(--logo);
 
+        h1 {
+            opacity: 0;
+            user-select: none;
+        }
+
         @include s {
             width: 80px;
             height: 40px;
