@@ -62,14 +62,15 @@ function movies() {
             const item = result.Search;
             let movies = document.querySelector('.movies');
 
-            item.forEach(el => {
-                let title = el.Title,
-                    poster = el.Poster != "N/A" ? el.Poster : "../assets/defaultimg.svg",
-                    year = el.Year,
-                    link = el.imdbID,
-                    type = el.Type;
+            if (item) {
+                item.forEach(el => {
+                    let title = el.Title,
+                        poster = el.Poster != "N/A" ? el.Poster : "../assets/defaultimg.svg",
+                        year = el.Year,
+                        link = el.imdbID,
+                        type = el.Type;
 
-                const template = `
+                    const template = `
                 <a class="item" data-type="${type}" href="https://imdb.com/title/${link}" target="_blank">
                 
                 <article class="item__content">
@@ -83,12 +84,15 @@ function movies() {
                 <div class="item__image"><img src="${poster}"></div>
                 </a>`;
 
-                movies.insertAdjacentHTML("beforeend", template);
+                    movies.insertAdjacentHTML("beforeend", template);
 
-                options.style.display = "flex";
+                    options.style.display = "flex";
 
-            });
+                });
 
+            } else {
+                noResults();
+            }
 
 
             // Hide Load More Button if results are inferior to 10
@@ -106,7 +110,7 @@ function movies() {
             const totalResults = `We found ${result.totalResults} results for <strong>${input.value}</strong>`;
             searchWords.innerHTML = totalResults;
 
-            noResults();
+
 
         })
 }
