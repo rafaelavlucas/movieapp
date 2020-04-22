@@ -19,6 +19,9 @@ let load = 1,
     type = "",
     loadMoreClicked = false;
 
+localStorage.setItem('themeDark', false);
+var getTheme = localStorage.getItem('themeDark');
+changeTheme();
 
 // Events
 btnSearch.addEventListener('click', searchMovies);
@@ -45,8 +48,9 @@ if (window.innerWidth <= 800) {
 };
 
 function movies() {
-
     let text = input.value;
+
+    loadMore.style.display = "none";
 
     if (!loadMoreClicked) {
         if (input.dataset.lastVal == text) {
@@ -108,20 +112,20 @@ function movies() {
                     movies.insertAdjacentHTML("beforeend", template);
 
                     options.style.display = "flex";
+
+                    // Hide Load More Button if results are inferior to 10
+
+                    if (result.totalResults <= 10) {
+                        loadMore.style.display = "none";
+
+                    } else {
+                        loadMore.style.display = "block";
+                    };
                 });
 
 
             } else {
                 noResults();
-            };
-
-            // Hide Load More Button if results are inferior to 10
-
-            if (result.totalResults <= 10) {
-                loadMore.style.display = "none";
-
-            } else {
-                loadMore.style.display = "block";
             };
 
 
@@ -227,16 +231,20 @@ function showAll() {
     resultsError.style.display = "none";
     loadMore.style.display = "flex";
     tagFilterAll.classList.add("selected");
+
+    type = "";
 }
 
 // Change to Dark Mode
 function changeTheme() {
-    if (wrapper.dataset.theme == "") {
+    if (!getTheme) {
         wrapper.dataset.theme = "dark";
         toggle.classList.add('on');
+        localStorage.setItem('themeDark', true);
     } else {
         wrapper.dataset.theme = "";
         toggle.classList.remove('on');
+        localStorage.setItem('themeDark', false);
     }
 }
 
