@@ -83,30 +83,31 @@ function movies() {
                 <div class="item__image"><img src="${poster}"></div>
                 </a>`;
 
-                setTimeout(() => {
-                    movies.insertAdjacentHTML("beforeend", template);
+                movies.insertAdjacentHTML("beforeend", template);
 
-                }, 400);
+                options.style.display = "flex";
 
             });
 
-            setTimeout(() => {
-                if (result.totalResults <= 10) {
-                    loadMore.style.display = "none";
 
-                } else {
-                    loadMore.style.display = "block";
-                }
-            }, 700);
 
+            // Hide Load More Button if results are inferior to 10
+
+            if (result.totalResults <= 10) {
+                loadMore.style.display = "none";
+
+            } else {
+                loadMore.style.display = "block";
+            }
 
             load++;
+
+            // Show the Number of Results and the word that was Searched
             const totalResults = `We found ${result.totalResults} results for <strong>${input.value}</strong>`;
-
             searchWords.innerHTML = totalResults;
-            options.style.display = "flex";
 
-            console.log(result)
+            noResults();
+
         })
 }
 // When you click on the Search Button, things happen!
@@ -127,7 +128,6 @@ function searchMovies() {
         input.classList.add("inputError");
         formError.classList.add("showError");
         searchWords.innerHTML = searchResult;
-
 
 
         // Input Empty Error Message
@@ -155,18 +155,16 @@ function loadMovies() {
 // No Results Message
 function noResults() {
 
-    setTimeout(() => {
-        if (moviesContainer.innerHTML == "") {
-            resultsError.style.display = "flex";
-            options.style.display = "none";
+    if (moviesContainer.innerHTML == "") {
+        resultsError.style.display = "flex";
+        options.style.display = "none";
+        loadMore.style.display = "none";
 
-        } else {
-            resultsError.style.display = "none";
-            options.style.display = "flex";
-        }
-    }, 700);
-
-    loadMore.style.display = "none";
+    } else {
+        resultsError.style.display = "none";
+        options.style.display = "flex";
+        loadMore.style.display = "flex";
+    }
 }
 
 // Filter Categories
@@ -197,9 +195,6 @@ function filters(e) {
         resultsError.style.display = "flex";
         loadMore.style.display = "none";
     }
-
-
-
 
 }
 
