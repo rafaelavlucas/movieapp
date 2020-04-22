@@ -104,13 +104,11 @@ function movies() {
             };
 
 
-
-            if (input.dataset.lastVal == text || input.dataset.lastVal == "") {
-                input.dataset.LastVal = text;
-                load++
+            if (input.dataset.lastVal == text || !input.dataset.lastVal) {
+                load++;
             } else {
-                input.dataset.LastVal == ""
-                load = 1
+                input.dataset.lastVal == "";
+                load = 1;
             }
 
             // Show the Number of Results and the word that was Searched
