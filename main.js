@@ -92,7 +92,7 @@ function movies() {
 
             } else {
                 noResults();
-            }
+            };
 
 
             // Hide Load More Button if results are inferior to 10
