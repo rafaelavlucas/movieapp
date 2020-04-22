@@ -102,12 +102,17 @@ function movies() {
             } else {
                 noResults();
             };
-
             if (input.dataset.lastVal == text) {
                 input.dataset.lastVal = text;
                 load++
-            } else {
-                input.dataset.lastVal = "";
+            }
+
+            if (!input.dataset.lastVal) {
+                input.dataset.lastVal = text
+            };
+
+            if (input.dataset.lastVal != text) {
+                input.dataset.lastVal = text;
                 load = 1
             }
 
