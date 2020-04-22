@@ -105,7 +105,7 @@ function movies() {
 
 
             if (input.dataset.lastVal == text || !input.dataset.lastVal) {
-                input.datasett.lastVal = text;
+                input.dataset.lastVal = text;
                 load++
 
             } else {
