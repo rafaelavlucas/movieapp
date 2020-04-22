@@ -105,8 +105,13 @@ function movies() {
 
 
 
-
-            load++;
+            if (input.dataset.lastVal == text || input.dataset.lastVal == "") {
+                input.dataset.LastVal = text;
+                load++
+            } else {
+                input.dataset.LastVal == ""
+                load = 1
+            }
 
             // Show the Number of Results and the word that was Searched
             const totalResults = `We found ${result.totalResults} results for <strong>${input.value}</strong>`;
