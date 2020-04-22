@@ -103,15 +103,16 @@ function movies() {
                 noResults();
             };
 
-
-            if (input.dataset.lastVal == text || !input.dataset.lastVal) {
+            if (input.dataset.lastVal == text) {
                 input.dataset.lastVal = text;
                 load++
-
             } else {
                 input.dataset.lastVal = "";
                 load = 1
             }
+
+
+
             // Show the Number of Results and the word that was Searched
             const totalResults = `We found ${result.totalResults} results for <strong>${input.value}</strong>`;
             searchWords.innerHTML = totalResults;
