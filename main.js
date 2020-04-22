@@ -15,9 +15,9 @@ const btnSearch = document.querySelector('.search__btn'),
     tagFilter = document.querySelectorAll(".filters__item"),
     tagFilterAll = document.querySelector(".filters__item.all");
 
-let load = 1;
-let type = "";
-
+let load = 1,
+    type = "",
+    loadMoreClicked = false;
 
 
 // Events
@@ -48,6 +48,27 @@ function movies() {
 
     let text = input.value;
 
+    if (!loadMoreClicked) {
+        if (input.dataset.lastVal == text) {
+            input.dataset.lastVal = text;
+            load = 1;
+        }
+
+        if (!input.dataset.lastVal) {
+            input.dataset.lastVal = text;
+        };
+
+        if (input.dataset.lastVal != text) {
+            input.dataset.lastVal = text;
+            load = 1;
+        };
+    } else {
+        if (input.dataset.lastVal == text) {
+            input.dataset.lastVal = text;
+            load++;
+        }
+    };
+
     var request = new Request(`https://www.omdbapi.com/?apikey=e62e1d19&s=${text}&type=${type}&page=${load}`, {
         method: 'GET',
     });
@@ -59,18 +80,18 @@ function movies() {
         })
 
         .then(function (result) {
-            const item = result.Search;
-            let movies = document.querySelector('.movies');
+                const item = result.Search;
+                let movies = document.querySelector('.movies');
 
-            if (item) {
-                item.forEach(el => {
-                    let title = el.Title,
-                        poster = el.Poster != "N/A" ? el.Poster : "../assets/defaultimg.svg",
-                        year = el.Year,
-                        link = el.imdbID,
-                        type = el.Type;
+                if (item) {
+                    item.forEach(el => {
+                        let title = el.Title,
+                            poster = el.Poster != "N/A" ? el.Poster : "../assets/defaultimg.svg",
+                            year = el.Year,
+                            link = el.imdbID,
+                            type = el.Type;
 
-                    const template = `
+                        const template = `
                 <a class="item" data-type="${type}" href="https://imdb.com/title/${link}" target="_blank">
                 
                 <article class="item__content">
@@ -84,165 +105,149 @@ function movies() {
                 <div class="item__image"><img src="${poster}"></div>
                 </a>`;
 
-                    movies.insertAdjacentHTML("beforeend", template);
+                        movies.insertAdjacentHTML("beforeend", template);
 
-                    options.style.display = "flex";
+                        options.style.display = "flex";
+                    });
 
-                    // Hide Load More Button if results are inferior to 10
 
-                    if (result.totalResults <= 10) {
-                        loadMore.style.display = "none";
+                } else {
+                    noResults();
+                };
 
-                    } else {
-                        loadMore.style.display = "block";
-                    }
+                // Hide Load More Button if results are inferior to 10
 
-                });
+                if (result.totalResults <= 10) {
+                    loadMore.style.display = "none";
 
-            } else {
-                noResults();
-            };
-            if (input.dataset.lastVal == text) {
-                input.dataset.lastVal = text;
-                load++
+                } else {
+                    loadMore.style.display = "block";
+
+                    // Show the Number of Results and the word that was Searched
+                    const totalResults = `We found ${result.totalResults} results for <strong>${input.value}</strong>`;
+                    searchWords.innerHTML = totalResults;
+
+                })
+        }
+    // When you click on the Search Button, things happen!
+    function searchMovies() {
+        loadMoreClicked = false;
+        resultsError.style.display = "none";
+
+        if (input.value != "") {
+            movies();
+            moviesContainer.innerHTML = "";
+            search.classList.add('clicked');
+            wrapper.classList.add('enter');
+            closeSearch.style.display = "block";
+
+        } else {
+            input.addEventListener("click", cleanError);
+            input.classList.add("inputError");
+            formError.classList.add("showError");
+            searchWords.innerHTML = searchResult;
+
+
+            // Input Empty Error Message
+            function cleanError() {
+                input.classList.remove("inputError");
+                formError.classList.remove("showError");
             }
-
-            if (!input.dataset.lastVal) {
-                input.dataset.lastVal = text
-            };
-
-            if (input.dataset.lastVal != text) {
-                input.dataset.lastVal = text;
-                load = 1
-            }
-
-
-
-            // Show the Number of Results and the word that was Searched
-            const totalResults = `We found ${result.totalResults} results for <strong>${input.value}</strong>`;
-            searchWords.innerHTML = totalResults;
-
-
-
-        })
-}
-// When you click on the Search Button, things happen!
-function searchMovies() {
-    resultsError.style.display = "none";
-
-    if (input.value != "") {
-        movies();
-        moviesContainer.innerHTML = "";
-        search.classList.add('clicked');
-        wrapper.classList.add('enter');
-        closeSearch.style.display = "block";
-
-    } else {
-        input.addEventListener("click", cleanError);
-        input.classList.add("inputError");
-        formError.classList.add("showError");
-        searchWords.innerHTML = searchResult;
-
-
-        // Input Empty Error Message
-        function cleanError() {
-            input.classList.remove("inputError");
-            formError.classList.remove("showError");
         }
     }
-}
 
-// Clean Input Search
-function cleanSearch() {
-    if (input.value != "") {
-        input.value = "";
-        closeSearch.style.display = "none";
+    // Clean Input Search
+    function cleanSearch() {
+        if (input.value != "") {
+            input.value = "";
+            closeSearch.style.display = "none";
+        }
     }
-}
 
-// Load More
-function loadMovies() {
-    movies();
-}
+    // Load More
+    function loadMovies() {
+        loadMoreClicked = true;
+        movies();
+    }
 
-// No Results Message
-function noResults() {
+    // No Results Message
+    function noResults() {
 
-    if (moviesContainer.innerHTML == "") {
-        resultsError.style.display = "flex";
-        options.style.display = "none";
-        loadMore.style.display = "none";
+        if (moviesContainer.innerHTML == "") {
+            resultsError.style.display = "flex";
+            options.style.display = "none";
+            loadMore.style.display = "none";
 
-    } else {
+        } else {
+            resultsError.style.display = "none";
+            options.style.display = "flex";
+            loadMore.style.display = "flex";
+        }
+    }
+
+    // Filter Categories
+    function filters(e) {
+        const item = document.querySelectorAll('.item');
+        type = e.currentTarget.dataset.filter;
+
+
+        item.forEach(function (el) {
+            el.style.display = "none";
+        })
+
+        tagFilter.forEach(function (el) {
+            el.classList.remove("selected");
+        });
+
+        e.currentTarget.classList.add("selected");
+
+        const showedElements = [...item].filter(element => element.dataset.type == e.currentTarget.dataset.filter);
+
+        showedElements.forEach(item => {
+            item.style.display = "flex";
+            resultsError.style.display = "none";
+            loadMore.style.display = "flex";
+        });
+
+        if (!showedElements.length) {
+            resultsError.style.display = "flex";
+            loadMore.style.display = "none";
+        }
+
+    }
+
+    // Remove all filters - Show All
+    function showAll() {
+        const item = document.querySelectorAll('.item');
+        item.forEach(function (el) {
+            el.style.display = "flex";
+        })
         resultsError.style.display = "none";
-        options.style.display = "flex";
         loadMore.style.display = "flex";
-    }
-}
-
-// Filter Categories
-function filters(e) {
-    const item = document.querySelectorAll('.item');
-    type = e.currentTarget.dataset.filter;
-
-
-    item.forEach(function (el) {
-        el.style.display = "none";
-    })
-
-    tagFilter.forEach(function (el) {
-        el.classList.remove("selected");
-    });
-
-    e.currentTarget.classList.add("selected");
-
-    const showedElements = [...item].filter(element => element.dataset.type == e.currentTarget.dataset.filter);
-
-    showedElements.forEach(item => {
-        item.style.display = "flex";
-        resultsError.style.display = "none";
-        loadMore.style.display = "flex";
-    });
-
-    if (!showedElements.length) {
-        resultsError.style.display = "flex";
-        loadMore.style.display = "none";
+        tagFilterAll.classList.add("selected");
     }
 
-}
-
-// Remove all filters - Show All
-function showAll() {
-    const item = document.querySelectorAll('.item');
-    item.forEach(function (el) {
-        el.style.display = "flex";
-    })
-    resultsError.style.display = "none";
-    loadMore.style.display = "flex";
-    tagFilterAll.classList.add("selected");
-}
-
-// Change to Dark Mode
-function changeTheme() {
-    if (wrapper.dataset.theme == "") {
-        wrapper.dataset.theme = "dark";
-        toggle.classList.add('on');
-    } else {
-        wrapper.dataset.theme = "";
-        toggle.classList.remove('on');
+    // Change to Dark Mode
+    function changeTheme() {
+        if (wrapper.dataset.theme == "") {
+            wrapper.dataset.theme = "dark";
+            toggle.classList.add('on');
+        } else {
+            wrapper.dataset.theme = "";
+            toggle.classList.remove('on');
+        }
     }
-}
 
 
-// Sticky Nav Bar
-window.onscroll = function () {
-    if (window.pageYOffset >= 1) {
-        header.classList.add("sticky");
-        search.classList.add("fixed");
+    // Sticky Nav Bar
+    window.onscroll = function () {
+        if (window.pageYOffset >= 1) {
+            header.classList.add("sticky");
+            search.classList.add("fixed");
 
 
-    } else {
-        header.classList.remove("sticky");
-        search.classList.remove("fixed");
-    };
-}
+        } else {
+            header.classList.remove("sticky");
+            search.classList.remove("fixed");
+        };
+    }
