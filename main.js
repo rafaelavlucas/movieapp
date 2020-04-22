@@ -88,6 +88,15 @@ function movies() {
 
                     options.style.display = "flex";
 
+                    // Hide Load More Button if results are inferior to 10
+
+                    if (result.totalResults <= 10) {
+                        loadMore.style.display = "none";
+
+                    } else {
+                        loadMore.style.display = "block";
+                    }
+
                 });
 
             } else {
@@ -95,14 +104,7 @@ function movies() {
             };
 
 
-            // Hide Load More Button if results are inferior to 10
 
-            if (result.totalResults <= 10) {
-                loadMore.style.display = "none";
-
-            } else {
-                loadMore.style.display = "block";
-            }
 
             load++;
 
@@ -120,8 +122,6 @@ function searchMovies() {
 
     if (input.value != "") {
         movies();
-        noResults();
-
         moviesContainer.innerHTML = "";
         search.classList.add('clicked');
         wrapper.classList.add('enter');
@@ -153,7 +153,6 @@ function cleanSearch() {
 // Load More
 function loadMovies() {
     movies();
-    noResults();
 }
 
 // No Results Message
