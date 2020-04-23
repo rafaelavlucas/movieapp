@@ -965,6 +965,67 @@ body {
   }
 }
 
+.backTop {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  right: 24px;
+  bottom: 24px;
+  position: fixed;
+  z-index: 2;
+  opacity: 0;
+  background: linear-gradient(45deg, #5b4ad6, #9225f0);
+  -webkit-transform: translatey(50px);
+          transform: translatey(50px);
+  -webkit-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.backTop:before, .backTop:after {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background-image: url("/assets/arrowup.svg");
+  background-size: contain;
+  border-radius: 100%;
+  z-index: 1;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.backTop:after {
+  -webkit-transform: translatey(40px);
+          transform: translatey(40px);
+}
+
+.backTop:hover:before {
+  -webkit-transform: translatey(-40px);
+          transform: translatey(-40px);
+}
+
+.backTop:hover:after {
+  -webkit-transform: translatey(0px);
+          transform: translatey(0px);
+}
+
+.backTop.show {
+  opacity: 1;
+  -webkit-transform: translatey(0);
+          transform: translatey(0);
+}
+
 .footer {
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;

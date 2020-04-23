@@ -839,6 +839,59 @@ body {
 
 }
 
+.backTop {
+    width: 40px;
+    height: 40px;
+
+    border-radius: 100%;
+    right: 24px;
+    bottom: 24px;
+    position: fixed;
+    z-index: 2;
+    opacity: 0;
+    background: $g-01;
+    transform: translatey(50px);
+    transition: all 0.4s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    overflow: hidden;
+
+    &:before,
+    &:after {
+        content: '';
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        background-image: url("/assets/arrowup.svg");
+        background-size: contain;
+        border-radius: 100%;
+        z-index: 1;
+        transition: all 0.3s ease;
+    }
+
+    &:after {
+        transform: translatey(40px);
+    }
+
+    &:hover {
+        &:before {
+            transform: translatey(-40px);
+        }
+
+        &:after {
+            transform: translatey(0px);
+        }
+    }
+
+    &.show {
+        opacity: 1;
+        transform: translatey(0);
+    }
+
+}
+
 .footer {
     @include transition();
     width: 100%;

@@ -13,15 +13,21 @@ const btnSearch = document.querySelector('.search__btn'),
     options = document.querySelector('.options'),
     searchWords = document.querySelector('.searchWords'),
     tagFilter = document.querySelectorAll(".filters__item"),
-    tagFilterAll = document.querySelector(".filters__item.all");
+    tagFilterAll = document.querySelector(".filters__item.all"),
+    backTop = document.querySelector(".backTop");
 
 let load = 1,
     type = "",
     loadMoreClicked = false;
 
-localStorage.setItem('themeDark', false);
+
 var getTheme = localStorage.getItem('themeDark');
-changeTheme();
+
+if (getTheme != "false") {
+    wrapper.dataset.theme = "dark";
+    toggle.classList.add('on');
+    localStorage.setItem('themeDark', true);
+};
 
 // Events
 btnSearch.addEventListener('click', searchMovies);
@@ -237,27 +243,52 @@ function showAll() {
 
 // Change to Dark Mode
 function changeTheme() {
-    if (!getTheme) {
+    getTheme = localStorage.getItem('themeDark');
+    if (getTheme == "false") {
         wrapper.dataset.theme = "dark";
         toggle.classList.add('on');
-        localStorage.setItem('themeDark', true);
+        getTheme = localStorage.setItem('themeDark', true);
     } else {
         wrapper.dataset.theme = "";
         toggle.classList.remove('on');
-        localStorage.setItem('themeDark', false);
+        getTheme = localStorage.setItem('themeDark', false);
     }
-}
+};
 
 
 // Sticky Nav Bar
 window.onscroll = function () {
-    if (window.pageYOffset >= 1) {
+    if (window.pageYOffset >= 4) {
         header.classList.add("sticky");
         search.classList.add("fixed");
-
-
     } else {
         header.classList.remove("sticky");
         search.classList.remove("fixed");
     };
 }
+
+// Sticky Back to Top
+window.onscroll = function () {
+    if (window.pageYOffset >= 400) {
+        backTop.classList.add("show");
+
+    } else {
+        backTop.classList.remove("show");
+    };
+}
+
+// Back to top
+
+backTop.addEventListener("click", function () {
+    scrollToTop(400);
+});
+
+function scrollToTop(scrollDuration) {
+    var scrollStep = -window.scrollY / (scrollDuration / 15),
+        scrollInterval = setInterval(function () {
+            if (window.scrollY != 0) {
+                window.scrollBy(0, scrollStep);
+            } else clearInterval(scrollInterval);
+        }, 15);
+}
+/* end Back to top */
