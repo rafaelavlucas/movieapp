@@ -180,6 +180,7 @@ function cleanSearch() {
 function loadMovies() {
     loadMoreClicked = true;
     movies();
+
 }
 
 // No Results Message
@@ -291,4 +292,25 @@ function scrollToTop(scrollDuration) {
             } else clearInterval(scrollInterval);
         }, 15);
 }
+
+observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        console.log(entry)
+        if (entry.intersectionRatio > 0) {
+            backTop.style.bottom = entry.intersectionRect.bottom - entry.boundingClientRect.top + 24 +
+                'px';
+            observer.unobserve(entry.target);
+        } else {
+            backTop.style.bottom = '24px';
+
+        }
+
+    });
+});
+
+window.addEventListener('scroll', function () {
+    observer.observe(document.querySelector('footer'));
+})
+
+
 /* end Back to top */
