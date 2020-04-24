@@ -96,7 +96,7 @@ function movies() {
             if (item) {
                 item.forEach(el => {
                     let title = el.Title,
-                        poster = el.Poster != "N/A" ? el.Poster : "../assets/defaultimg.svg",
+                        poster = el.Poster != "N/A" ? el.Poster : "assets/defaultimg.svg",
                         year = el.Year,
                         link = el.imdbID,
                         type = el.Type;
@@ -178,10 +178,10 @@ function cleanSearch() {
 
 // Load More
 function loadMovies() {
-    observer.observe(document.querySelector('footer'));
+
     loadMoreClicked = true;
     movies();
-
+    observer.observe(document.querySelector('footer'));
 
 }
 
