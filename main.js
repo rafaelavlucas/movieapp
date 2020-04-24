@@ -178,8 +178,10 @@ function cleanSearch() {
 
 // Load More
 function loadMovies() {
+    observer.observe(document.querySelector('footer'));
     loadMoreClicked = true;
     movies();
+
 
 }
 
@@ -266,10 +268,7 @@ window.onscroll = function () {
         header.classList.remove("sticky");
         search.classList.remove("fixed");
     };
-}
-
-// Sticky Back to Top
-window.onscroll = function () {
+    // Sticky Back to Top
     if (window.pageYOffset >= 400) {
         backTop.classList.add("show");
 
@@ -277,6 +276,8 @@ window.onscroll = function () {
         backTop.classList.remove("show");
     };
 }
+
+
 
 // Back to top
 
