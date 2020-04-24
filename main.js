@@ -139,6 +139,8 @@ function movies() {
             const totalResults = `We found ${result.totalResults} results for <strong>${input.value}</strong>`;
             searchWords.innerHTML = totalResults;
 
+            observer.observe(document.querySelector('footer'));
+
         })
 }
 // When you click on the Search Button, things happen!
@@ -181,7 +183,7 @@ function loadMovies() {
 
     loadMoreClicked = true;
     movies();
-    observer.observe(document.querySelector('footer'));
+
 
 }
 

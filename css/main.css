@@ -993,10 +993,8 @@ body {
   background: linear-gradient(45deg, #5b4ad6, #9225f0);
   -webkit-transform: translatey(50px);
           transform: translatey(50px);
-  -webkit-transition: opacity 0.4s ease, -webkit-transform 0.4s ease;
-  transition: opacity 0.4s ease, -webkit-transform 0.4s ease;
-  transition: transform 0.4s ease, opacity 0.4s ease;
-  transition: transform 0.4s ease, opacity 0.4s ease, -webkit-transform 0.4s ease;
+  -webkit-transition: all 0.4s ease;
+  transition: all 0.4s ease;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

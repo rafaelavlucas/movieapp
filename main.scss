@@ -867,7 +867,7 @@ body {
     opacity: 0;
     background: $g-01;
     transform: translatey(50px);
-    transition: transform 0.4s ease, opacity 0.4s ease;
+    transition: all 0.4s ease;
     display: flex;
     justify-content: center;
     align-items: center;
