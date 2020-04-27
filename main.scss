@@ -44,7 +44,7 @@ $g-01: linear-gradient(45deg, #5b4ad6, #9225f0);
 
     --formBg: white;
     --formShadow: inset 0px 0px 0px 1px #aeaeae, 0px 6px 35px -16px #9225f0, inset 0px 0px 0px 1000px #fff;
-    --formHover: inset 0px 0px 0px 1px #9225f0, 0px 0px 0px 0px #9225f0, inset 0px 0px 0px 1000px #fff;
+    --formHover: inset 0px 0px 0px 2px #9225f0, 0px 0px 0px 0px #9225f0, inset 0px 0px 0px 1000px #fff;
 
     --toggleBg: #fff;
     --toggleShadow: inset 0px 0px 0px 1px #aeaeae, 0px 4px 20px -6px #9225f0;
@@ -76,8 +76,8 @@ $g-01: linear-gradient(45deg, #5b4ad6, #9225f0);
     --btnHover: 0px;
 
     --formBg: #232324;
-    --formShadow: inset 0px 0px 0px 1px #797979, 0px 6px 40px -5px #131313, inset 0px 0px 0px 1000px #232324;
-    --formHover: inset 0px 0px 0px 1px #9225f0, 0px 0px 0px 0px #131313, inset 0px 0px 0px 1000px #232324;
+    --formShadow: inset 0px 0px 0px 1px #636363, 0px 6px 40px -5px #131313, inset 0px 0px 0px 1000px #232324;
+    --formHover: inset 0px 0px 0px 2px #9225f0, 0px 0px 0px 0px #131313, inset 0px 0px 0px 1000px #232324;
 
     --toggleBg: #2f2f30;
     --toggleShadow: inset 0px 0px 0px 1px #797979, 0px 8px 10px 0px #181818;
@@ -158,6 +158,16 @@ $g-01: linear-gradient(45deg, #5b4ad6, #9225f0);
     button {
         background: transparent;
     }
+}
+
+::-moz-selection {
+    background-color: $m-02;
+    color: #ffffff;
+}
+
+::selection {
+    background-color: $m-02;
+    color: #ffffff;
 }
 
 body {
@@ -447,7 +457,8 @@ body {
         }
 
         &::placeholder {
-            color: #ccc;
+            color: var(--text);
+            opacity: 0.5;
         }
 
         &.inputError {
